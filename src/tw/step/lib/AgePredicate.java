@@ -8,12 +8,12 @@ public class AgePredicate implements Predicate,Format{
 
     @Override
     public boolean test(Name name, Age age, Address address, Gender gender) {
-        return  Integer.parseInt(age.getAge()) <= this.age;
+        return  Integer.parseInt(age.getAge()) >= this.age;
     }
     @Override
     public String apply(Name name, Age age, Address address, Gender gender) {
         if(test(name,age,address,gender))
-            return this.age.toString();
+            return age.getAge();
         return null;
     }
 }
