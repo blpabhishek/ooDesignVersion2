@@ -13,4 +13,5 @@ public class Reader {
         List<String> strings = Files.readAllLines(path, Charset.defaultCharset());
         return strings;
     }
+
 }
