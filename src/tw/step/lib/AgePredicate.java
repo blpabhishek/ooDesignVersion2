@@ -1,6 +1,6 @@
 package tw.step.lib;
 
-public class AgePredicate implements Predicate,Format{
+public class AgePredicate implements Predicate{
     Integer age;
     public AgePredicate(Integer age) {
         this.age= age;

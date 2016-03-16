@@ -1,6 +1,5 @@
 package tw.step.lib;
 
-import com.sun.tools.javac.jvm.Gen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,13 +16,13 @@ public class FirstLastNameFormatTest {
 
     @Test
     public void testApplyShouldGiveInFirstLastFormatForFemale() throws Exception {
-        String apply = firstLastNameFormat.apply(Gender.FEMALE, "Renu", "Singh");
+        String apply = firstLastNameFormat.apply("Renu", "Singh");
         assertEquals("Ms.Renu Singh",apply);
     }
 
     @Test
     public void testApplyShouldGiveInFirstLastFormatForMale() throws Exception {
-        String apply = firstLastNameFormat.apply(Gender.MALE, "Ramu", "Singh");
+        String apply = firstLastNameFormat.apply("Ramu", "Singh");
         assertEquals("Mr.Ramu Singh",apply);
     }
 }

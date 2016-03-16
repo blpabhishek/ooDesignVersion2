@@ -13,11 +13,11 @@ public class Person {
     }
 
     public String getName(NameFormat nameFormat){
-        return name.getName(nameFormat,gender);
+        return gender.getPrefix()+name.getName(nameFormat);
     }
 
-    public String getPerson(Format format){
-        return format.apply(name,age,address,gender);
+    public String getPerson(Predicate predicate){
+        return predicate.apply(name,age,address,gender);
     }
 
     public static Person createRecord(String value) {

@@ -16,13 +16,13 @@ public class LastFirstNameFormatTest {
 
     @Test
     public void testApplyShouldGiveInFirstLastFormatForFemale() throws Exception {
-        String apply = lastFirstNameFormat.apply(Gender.FEMALE, "Renu", "Singh");
+        String apply = lastFirstNameFormat.apply("Renu", "Singh");
         assertEquals("Ms.Singh,Renu",apply);
     }
 
     @Test
     public void testApplyShouldGiveInFirstLastFormatForMale() throws Exception {
-        String apply = lastFirstNameFormat.apply(Gender.MALE, "Ramu", "Singh");
+        String apply = lastFirstNameFormat.apply("Ramu", "Singh");
         assertEquals("Mr.Singh,Ramu",apply);
     }
 

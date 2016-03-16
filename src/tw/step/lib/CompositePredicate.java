@@ -13,9 +13,9 @@ public class CompositePredicate extends LinkedList<Predicate> {
     public String getExtraField(Person person){
         StringBuilder string= new StringBuilder();
         for (Predicate predicate : this) {
-            string.append(person.getPerson(predicate)+",");
+            String extraFields = person.getPerson(predicate);
+            string.append(extraFields+",");
         }
-        string.deleteCharAt(string.length()-1);
         return new String(string);
     }
 }

@@ -1,6 +1,6 @@
 package tw.step.lib;
 
-public class CountryPredicate implements Predicate,Format{
+public class CountryPredicate implements Predicate{
     private String country;
     public CountryPredicate(String country) {
         this.country = country;

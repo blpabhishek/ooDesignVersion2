@@ -37,6 +37,6 @@ public class CompositePredicateTest {
     @Test
     public void testGetExtraFieldsGivesExtraFieldForRepresentation() throws Exception {
         String extraField = compositePredicate.getExtraField(person);
-        assertEquals("31,Italy",extraField);
+        assertEquals("31,Italy,",extraField);
     }
 }

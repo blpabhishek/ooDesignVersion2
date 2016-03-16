@@ -1,6 +1,9 @@
 package tw.step.records;
 
 import org.apache.commons.cli.*;
+import tw.step.lib.*;
+
+import java.util.List;
 
 public class ArgumentParser {
     private Options options;
@@ -19,7 +22,7 @@ public class ArgumentParser {
         options.addOption("h", false, "help");
     }
 
-    public CommandLine parse() {
+    private CommandLine parse() {
         HelpFormatter formatter = new HelpFormatter();
         if (args.length == 0)
             formatter.printHelp("PrintLabel", options);
@@ -32,6 +35,29 @@ public class ArgumentParser {
             return null;
         }
         return cmd;
+    }
+
+    public NameFormat getFormat(){
+        CommandLine commandLine = parse();
+        NameFormat nameFormat = new FirstLastNameFormat();
+        if(commandLine.hasOption("f"))
+            nameFormat = new FirstLastNameFormat();
+        if(commandLine.hasOption("l"))
+            nameFormat = new LastFirstNameFormat();
+        return nameFormat;
+    }
+    public CompositePredicate getPredicates() {
+        CommandLine commandLine = parse();
+        CompositePredicate compositePredicate = new CompositePredicate();
+        if(commandLine.hasOption("a"))
+            compositePredicate.add( new AgePredicate(Integer.parseInt(commandLine.getOptionValue("a"))));
+        if(commandLine.hasOption("c"))
+            compositePredicate.add(new CountryPredicate(commandLine.getOptionValue("c")));
+        return compositePredicate;
+    }
+    public List<String> getFiles(){
+        CommandLine commandLine = parse();
+        return commandLine.getArgList();
     }
 }
 

@@ -3,8 +3,6 @@ package tw.step.lib;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,21 +27,27 @@ public class PeopleTest {
     }
 
     @Test
-    public void testPrintValueGivesTheResultAccordingToNameFormatAndPredicates() throws Exception {
+    public void testFilterGivesTheResultAccordingToNameFormatAndPredicates() throws Exception {
         NameFormat format = new LastFirstNameFormat();
         CompositePredicate predicates = new CompositePredicate();
         predicates.add(new CountryPredicate("Qatar"));
-        String printValue = people.printValue(format, predicates);
-        assertEquals("Ms.Roob,Sage,Qatar\n",printValue);
+        People people = this.people.filter(predicates);
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("Sage,Roob,Female,31,Crooks ton,South Carolina,Qatar");
+        People expected = People.createPeople(linkedList);
+        assertEquals(expected,people);
     }
 
     @Test
     public void testPrintValueGivesTheResultAccordingToNameFormatAndAllPredicates() throws Exception {
+        List<String> str= new LinkedList<>();
+        str.add("Sage,Roob,Female,31,Crooks ton,South Carolina,Qatar");
+        people = People.createPeople(str);
         NameFormat format = new LastFirstNameFormat();
         CompositePredicate predicates = new CompositePredicate();
         predicates.add(new CountryPredicate("Qatar"));
         predicates.add(new AgePredicate(31));
-        String printValue = people.printValue(format, predicates);
+        String printValue = people.printLabel(format,predicates);
         assertEquals("Ms.Roob,Sage,Qatar,31\n",printValue);
     }
 }

@@ -25,12 +25,39 @@ public class People {
         return collection.toString();
     }
 
-    public String printValue(NameFormat nameFormat, CompositePredicate predicates) {
-        StringBuilder string = new StringBuilder();
+    public People filter(CompositePredicate predicates) {
+        People people = new People();
         for (Person person : collection) {
             if(predicates.testAll(person))
-                string.append(person.getName(nameFormat)+","+predicates.getExtraField(person)+"\n");
+                people.addPerson(person);
+        }
+        return people;
+    }
+
+
+    public String printLabel(NameFormat nameFormat, CompositePredicate predicates) {
+        StringBuilder string = new StringBuilder();
+        for (Person person : collection) {
+            string.append(person.getName(nameFormat) + "," + predicates.getExtraField(person) + "\n");
+            string.deleteCharAt(string.length()-2);
         }
         return new String(string);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        People people = (People) o;
+
+        if (collection != null ? !collection.equals(people.collection) : people.collection != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return collection != null ? collection.hashCode() : 0;
     }
 }

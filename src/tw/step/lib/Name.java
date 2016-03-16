@@ -9,8 +9,8 @@ public class Name{
         this.lastName = lastName;
     }
 
-    public String getName(NameFormat nameFormat, Gender gender) {
-        return nameFormat.apply(gender,firstName,lastName);
+    public String getName(NameFormat nameFormat) {
+        return nameFormat.apply(firstName,lastName);
     }
 
     @Override
